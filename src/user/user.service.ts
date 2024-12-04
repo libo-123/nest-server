@@ -27,7 +27,6 @@ export class UserService {
         raw: true, // 是否使用数组组装的方式展示结果
         logging: false, // 是否将 SQL 语句打印到控制台，默认为 true
       });
-
       return user[0]
     } catch (error) {
       console.error(error)

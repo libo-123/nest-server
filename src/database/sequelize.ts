@@ -19,7 +19,7 @@ const sequelize = new Sequelize(
 )
 
 sequelize.authenticate().then(() => {
-    console.log('数据库连接成功')
+    console.log('sql-connect success')
 }).catch(err => {
     console.log('数据库连接失败', err)
     throw err;

@@ -8,9 +8,10 @@ import { jwtConstants } from './constants';
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor() {
         super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            jwtFromRequest: ExtractJwt.fromHeader('authorization'), // 方式1：从头部获取token
+            // jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), //方式2: 从头部获取Bearer token
             ignoreExpiration: false,
-            secretOrKey: jwtConstants.secret,
+            secretOrKey: jwtConstants.secret, //对称加密密钥(暂用)   PEM 编码的公钥更适合生产环境
         });
     }
 

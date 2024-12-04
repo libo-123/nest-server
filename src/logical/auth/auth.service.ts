@@ -11,7 +11,7 @@ export class AuthService {
     ) { }
 
     /**
-     * JWT验证 - Step 2: 校验用户信息
+     * JWT验证 - Step 2: 校验登录用户信息
      */
     async validateUser(username: string, password: string): Promise<any> {
         const user = await this.userService.findOne(username);
@@ -21,7 +21,7 @@ export class AuthService {
             // 通过密码盐，加密传参，再与数据库里的比较，判断是否相等
             const hashPassword = encryptPassword(password, salt);
             if (hashedPassword === hashPassword) {
-                // 密码正确
+                console.log("登录成功");
                 return {
                     code: 1,
                     user,
@@ -42,7 +42,7 @@ export class AuthService {
     }
 
     /**
-     * JWT验证 - Step 3: 处理 jwt 签证
+     * JWT验证 - Step 3: 生成 jwt 签证
      */
     async certificate(user: any) {
         const payload = {
@@ -66,6 +66,17 @@ export class AuthService {
                 msg: `账号或密码错误`,
             };
         }
+    }
+
+
+    /**
+     * 校验token是否过期
+     * @param token 
+     * @returns 
+     */
+    async verifyToken(token: string) {
+        if (!token) return '';
+        return this.jwtService.verify(token);
     }
 
 }
