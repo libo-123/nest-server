@@ -83,5 +83,15 @@ npm i log4js stacktrace-js -S
 ## 测试
 
 
+## 部署
+搭建node环境
+https://blog.csdn.net/qq_63358859/article/details/139320702
+
+yum install -g pm2  用pm2启动
+
+https://juejin.cn/post/7367630980944035878  用docker部署 做服务迁移
+
+
+
 
 
