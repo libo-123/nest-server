@@ -146,6 +146,10 @@ nginx -s stop   # 关闭进程
 nginx -s quit   # 平滑关闭nginx
 nginx -V        # 查看nginx的安装状态，
 
+netstat -anput | grep nginx # 查看nginx的进程
+
+https://blog.csdn.net/u012702547/article/details/142452250 # nginx 配置详解
+
 ### docker
 后续有机会再升级吧
 https://juejin.cn/post/7367630980944035878  用docker部署 做服务迁移
