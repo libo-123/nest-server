@@ -87,8 +87,67 @@ npm i log4js stacktrace-js -S
 搭建node环境
 https://blog.csdn.net/qq_63358859/article/details/139320702
 
+
+### pm2
+通过yum安装pm2
 yum install -g pm2  用pm2启动
 
+通过npm全局安装PM2
+npm install pm2 -g
+
+常用命令：
+pm2 start index.js  --name <服务名称>  #启动服务
+pm2 list
+pm2 stop my-server
+pm2 restart all
+pm2 delete my-server
+pm2 show my-server
+pm2 logs
+
+‌启动应用‌：
+pm2 start app.js：启动一个Node.js应用。
+pm2 start app.js --name my-api：启动一个应用并命名为my-api。
+pm2 start app.js -i 0：根据CPU核心数启动进程。
+pm2 start app.js --watch：实时监控app.js，文件变动时自动重启应用‌12。
+‌查看进程‌：
+pm2 list或pm2 ls：列出所有由PM2启动的应用程序。
+pm2 show [app-name或id]：显示指定应用程序的所有信息。
+pm2 describe [app-name或id]：查看特定进程的详细信息‌12。
+‌监控和管理‌：
+pm2 monit：显示每个应用程序的CPU和内存占用情况。
+pm2 logs [--raw]：显示所有进程的日志。
+pm2 logs [app-name或id]：显示指定应用程序的日志。
+pm2 flush：清空所有日志文件。
+pm2 reloadLogs：重新加载所有日志‌12。
+‌停止、重启和重载‌：
+pm2 stop all：停止所有进程。
+pm2 stop [app-name或id]：停止指定的进程。
+pm2 restart all：重启所有进程。
+pm2 restart [app-name或id]：重启指定的进程。
+pm2 reload all：无停机时间重新加载所有进程（适用于网络应用）‌12。
+‌删除进程‌：
+pm2 delete all：删除所有进程。
+pm2 delete [app-name或id]：删除指定的进程‌12。
+‌其他命令‌：
+pm2 update pm2：更新PM2版本。
+pm2 serve [path] [port]：使用PM2搭建静态文件服务器‌13。
+‌PM2的安装和基本使用‌：
+
+
+### nginx
+sudo systemctl status nginx # nginx当前状态
+sudo systemctl reload nginx # 重新加载 nginx
+sudo systemctl restart nginx # 重启nginx
+ 
+sudo nginx -t   # 检查语法
+nginx           # 启动
+nginx -s reload # 重启
+nginx -s stop   # 关闭进程
+nginx -s quit   # 平滑关闭nginx
+nginx -V        # 查看nginx的安装状态，
+
+### docker
+后续有机会再升级吧
 https://juejin.cn/post/7367630980944035878  用docker部署 做服务迁移
 
 
