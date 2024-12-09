@@ -12,7 +12,7 @@ export const page = () => {
 
 <body>
     <h1>Hello World</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 测试连接成功！ </p>
 </body>
 </html>
     `
