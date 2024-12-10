@@ -1,19 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes } from '@nestjs/common';
 import { CardService } from './card.service';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
+import { ValidationPipe } from 'src/pipe/validation/validation.pipe';
 
 @Controller('card')
 export class CardController {
-  constructor(private readonly cardService: CardService) {}
+  constructor(private readonly cardService: CardService) { }
 
-  @Post()
+  @Post('/create')
   create(@Body() createCardDto: CreateCardDto) {
     return this.cardService.create(createCardDto);
   }
 
-  @Get()
-  findAll() {
+  @Get('/findList')
+  async findAll() {
     return this.cardService.findAll();
   }
 

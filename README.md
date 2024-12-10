@@ -74,8 +74,24 @@ npm i log4js stacktrace-js -S
 
 还是用官方的吧
 
+
+## 管道 pipe 验证入参
+https://nest.nodejs.cn/pipes#%E7%AE%A1%E9%81%93 文档
+管道和拦截器有点像，都是在数据传输过程中的 “关卡”，只不过各司其职。
+·转换:管道将输入数据转换为所需的数据输出;
+·验证:对输入数据进行验证，如果验证成功继续传递，验证失败则抛出异常;
+
+快捷创建管道
+nest g pipe validation pipe
+
+安装包
+npm i class-validator class-transformer -S
+
+
 ## 文档
 已经够了，但是还是需要补充。
+
+
 
 ## 补缺
 依赖关系需要 清晰下

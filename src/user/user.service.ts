@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-import * as Sequelize from 'sequelize';
 import sequelize from '../database/sequelize'; // 引入 Sequelize 实例
 import { encryptPassword, makeSalt } from 'src/utils/cryptogram';
+import { excuteSql } from 'src/utils/sql-query';
 
 @Injectable()
 export class UserService {
@@ -22,11 +22,7 @@ export class UserService {
         account_name = '${username}'
       `;
     try {
-      const user = await sequelize.query(sql, {
-        type: Sequelize.QueryTypes.SELECT, // 查询方式
-        raw: true, // 是否使用数组组装的方式展示结果
-        logging: false, // 是否将 SQL 语句打印到控制台，默认为 true
-      });
+      const user = await excuteSql(sql, 'SELECT')
       return user[0]
     } catch (error) {
       console.error(error)

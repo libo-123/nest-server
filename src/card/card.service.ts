@@ -1,15 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
-
+import sequelize from '../database/sequelize';
+import * as Sequelize from 'sequelize';
+import { excuteSql } from 'src/utils/sql-query';
 @Injectable()
 export class CardService {
   create(createCardDto: CreateCardDto) {
+    console.log("传入的参数", createCardDto);
+    // 插入数据表格
+
     return 'This action adds a new card';
   }
 
-  findAll() {
-    return `This action returns all card`;
+  async findAll() {
+    const sql = `SELECT * FROM card`;
+    try {
+      return await excuteSql(sql, 'SELECT')
+    } catch (error) {
+      console.error(error)
+      return void 0
+    }
   }
 
   findOne(id: number) {
