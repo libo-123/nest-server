@@ -33,10 +33,18 @@ export class CardService {
     const { title, description } = cardQuery
     const sql = `SELECT * FROM card WHERE title LIKE '%${title || ''}%' AND description LIKE '%${description || ''}%'`;
     try {
-      return await excuteSql(sql, 'SELECT')
+      const result = await excuteSql(sql, 'SELECT')
+      return {
+        code: 200,
+        data: result,
+        msg: 'SUCCESS'
+      }
     } catch (error) {
       console.error(error)
-      return void 0
+      return {
+        code: 503,
+        msg: `Service error: ${error}`,
+      };
     }
   }
 
