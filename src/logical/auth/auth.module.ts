@@ -9,7 +9,7 @@ import { JwtStrategy } from './jwt.strategy';
 
 const jwtModule = JwtModule.register({
     secret:  jwtConstants.secret,               // 加密 key
-    signOptions: { expiresIn: '120h' }, // 过期时间 - 这里设置是 5 天
+    signOptions: { expiresIn: '2h' }, // 过期时间 - 这里设置是 5 天
 });
 
 /**
