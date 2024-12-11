@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import sequelize from '../database/sequelize'; // 引入 Sequelize 实例
+import sequelize from '../../database/sequelize'; // 引入 Sequelize 实例
 import { encryptPassword, makeSalt } from 'src/utils/cryptogram';
 import { excuteSql } from 'src/utils/sql-query';
 
