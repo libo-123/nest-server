@@ -1,8 +1,5 @@
 
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Project setup
 
@@ -170,7 +167,9 @@ https://blog.csdn.net/u012702547/article/details/142452250 # nginx 配置详解
 后续有机会再升级吧
 https://juejin.cn/post/7367630980944035878  用docker部署 做服务迁移
 
-
+## 相关问题
+1、 sql 注入攻击
+2、 错误返回，异常校验统一处理，后续再说！
 
 
 

@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, Query } from '@nestjs/common';
 import { CardService } from './card.service';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
-import { ValidationPipe } from 'src/pipe/validation/validation.pipe';
+import { FindCardDto } from './dto/find-card.dto';
 
 @Controller('card')
 export class CardController {
@@ -14,21 +14,16 @@ export class CardController {
   }
 
   @Get('/findList')
-  async findAll() {
-    return this.cardService.findAll();
+  async findAll(@Query() query: FindCardDto) {
+    return this.cardService.findAll(query);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cardService.findOne(+id);
-  }
-
-  @Patch(':id')
+  @Patch('/update/:id')
   update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {
     return this.cardService.update(+id, updateCardDto);
   }
 
-  @Delete(':id')
+  @Delete('/delete/:id')
   remove(@Param('id') id: string) {
     return this.cardService.remove(+id);
   }

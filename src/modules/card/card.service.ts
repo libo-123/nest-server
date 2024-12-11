@@ -1,20 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
-import sequelize from '../../database/sequelize';
-import * as Sequelize from 'sequelize';
+import { FindCardDto } from './dto/find-card.dto'
 import { excuteSql } from 'src/utils/sql-query';
 @Injectable()
 export class CardService {
-  create(createCardDto: CreateCardDto) {
-    console.log("传入的参数", createCardDto);
-    // 插入数据表格
+  async create(createCardDto: CreateCardDto) {
+    const sql = `INSERT INTO card (name, title, description, link) 
+    VALUES ('${createCardDto.name}', 
+    '${createCardDto.title}', 
+    '${createCardDto.description}', 
+    '${createCardDto.link}')`;
 
-    return 'This action adds a new card';
+    // 插入数据表格
+    try {
+      await excuteSql(sql, 'INSERT')
+      return {
+        code: 200,
+        data: null,
+        msg: 'SUCCESS'
+      }
+    } catch (error) {
+      console.error(error)
+      return {
+        code: 503,
+        msg: `Service error: ${error}`,
+      };
+    }
   }
 
-  async findAll() {
-    const sql = `SELECT * FROM card`;
+  async findAll(cardQuery: FindCardDto) {
+    const { title, description } = cardQuery
+    const sql = `SELECT * FROM card WHERE title LIKE '%${title || ''}%' AND description LIKE '%${description || ''}%'`;
     try {
       return await excuteSql(sql, 'SELECT')
     } catch (error) {
@@ -23,15 +40,46 @@ export class CardService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} card`;
+  async update(id: number, updateCardDto: UpdateCardDto) {
+    const sql = `
+    UPDATE card 
+    SET 
+    name='${updateCardDto.name || ''}', 
+    title='${updateCardDto.title}', 
+    description='${updateCardDto.description}', 
+    link='${updateCardDto.description}'
+    WHERE id = ${id}`;
+    try {
+      await excuteSql(sql, 'UPDATE')
+      return {
+        code: 200,
+        data: null,
+        msg: 'SUCCESS'
+      }
+    } catch (error) {
+      console.error(error)
+      return {
+        code: 503,
+        msg: `Service error: ${error}`,
+      };
+    }
   }
 
-  update(id: number, updateCardDto: UpdateCardDto) {
-    return `This action updates a #${id} card`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} card`;
+  async remove(id: number) {
+    const sql = `DELETE FROM card WHERE id=${id}`;
+    try {
+      await excuteSql(sql, 'DELETE')
+      return {
+        code: 200,
+        data: null,
+        msg: 'SUCCESS'
+      }
+    } catch (error) {
+      console.error(error)
+      return {
+        code: 503,
+        msg: `Service error: ${error}`,
+      };
+    }
   }
 }

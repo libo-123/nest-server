@@ -3,7 +3,8 @@ import sequelize from "src/database/sequelize";
 
 
 /**
- * 如果是通用的，用这个就行
+ * 如果是通用的，用这个就行；
+ * 这样使用虽然简单，但有sql注入攻击的风险，暂时先这样用吧！后续再处理
  * @param sql sql语句
  * @param queryType  执行类型，默认值为Sequelize.QueryTypes.SELECT
  * @returns 
