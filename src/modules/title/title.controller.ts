@@ -23,6 +23,7 @@ export class TitleController {
    * @param helpDto 
    * @returns 
    */
+  @Public()
   @Post('/addHelp')
   async helper(@Body() helpDto: HelpDto) {
     return this.titleService.help(helpDto);
