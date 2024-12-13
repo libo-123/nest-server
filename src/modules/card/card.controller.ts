@@ -3,6 +3,7 @@ import { CardService } from './card.service';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
 import { FindCardDto } from './dto/find-card.dto';
+import { Public } from 'src/meta/meta';
 
 @Controller('card')
 export class CardController {
@@ -13,6 +14,7 @@ export class CardController {
     return this.cardService.create(createCardDto);
   }
 
+  @Public()
   @Get('/findList')
   async findAll(@Query() query: FindCardDto) {
     return this.cardService.findAll(query);
