@@ -55,7 +55,7 @@ export class CardService {
     name='${updateCardDto.name || ''}', 
     title='${updateCardDto.title}', 
     description='${updateCardDto.description}', 
-    link='${updateCardDto.description}'
+    link='${updateCardDto.link}'
     WHERE id = ${id}`;
     try {
       await excuteSql(sql, 'UPDATE')
