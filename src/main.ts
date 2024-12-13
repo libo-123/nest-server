@@ -16,6 +16,8 @@ async function bootstrap() {
   // 使用全局拦截器打印出参
   app.useGlobalInterceptors(new TransformInterceptor());
 
+  // 主动允许跨域
+  app.enableCors();
   await app.listen(process.env.PORT ?? 3100);
 }
 bootstrap();
