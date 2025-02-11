@@ -36,16 +36,18 @@ export class CardController {
     const result = await this.cardService.getContentAI(content);
 
     response.setHeader('Content-Type', 'text/event-stream');
-    // response.setHeader('Connection', 'keep-alive');
-    // response.setHeader('Cache-Control', 'no-cache');
-
+    response.setHeader('Connection', 'keep-alive');
+    response.setHeader('Cache-Control', 'no-cache');
+    response.setHeader('X-Accel-Buffering', 'no'); // 禁用 Nginx 的缓冲
+    response.setHeader('Access-Control-Allow-Origin', '*'); // 允许跨域访问
+    response.flushHeaders(); // 立即发送头部
 
     const characters = result.toString();
     let index = 0;
 
     const interval = setInterval(() => {
       if (index < characters.length) {
-        const chunkSize = Math.floor(Math.random() * 10) + 1; // 生成1-10之间的随机数
+        const chunkSize = Math.floor(Math.random() * 5) + 1; // 生成1-10之间的随机数
         const chunk = characters.slice(index, index + chunkSize);
         response.write(`data:${chunk}\n\n`);
         index += chunkSize;

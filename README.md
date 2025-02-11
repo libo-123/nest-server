@@ -148,16 +148,17 @@ pm2 serve [path] [port]：使用PM2搭建静态文件服务器‌13。
 
 
 ### nginx
+sudo表示最高权限，也可以不使用
 sudo systemctl status nginx # nginx当前状态
 sudo systemctl reload nginx # 重新加载 nginx
 sudo systemctl restart nginx # 重启nginx
  
-sudo nginx -t   # 检查语法
-nginx           # 启动
-nginx -s reload # 重启
-nginx -s stop   # 关闭进程
-nginx -s quit   # 平滑关闭nginx
-nginx -V        # 查看nginx的安装状态，
+sudo nginx -t  # 首先测试配置是否正确
+sudo nginx           # 启动 
+sudo nginx -s reload # 重启
+sudo nginx -s stop   # 关闭进程
+sudo nginx -s quit   # 平滑关闭nginx
+sudo nginx -V        # 查看nginx的安装状态，
 
 netstat -anput | grep nginx # 查看nginx的进程
 
