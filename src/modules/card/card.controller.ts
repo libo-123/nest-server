@@ -39,7 +39,7 @@ export class CardController {
     response.setHeader('Connection', 'keep-alive');
     response.setHeader('Cache-Control', 'no-cache');
     response.setHeader('X-Accel-Buffering', 'no'); // 禁用 Nginx 的缓冲
-    response.setHeader('Access-Control-Allow-Origin', '*'); // 允许跨域访问
+    // response.setHeader('Access-Control-Allow-Origin', '*'); // 允许跨域访问 不生效
     response.flushHeaders(); // 立即发送头部
 
     const characters = result.toString();
