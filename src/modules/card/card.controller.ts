@@ -39,20 +39,22 @@ export class CardController {
     response.setHeader('Connection', 'keep-alive');
     response.setHeader('Cache-Control', 'no-cache');
 
-    // start-----sse模拟逐次发送数据
-    const characters = result.toString().split('');
+
+    const characters = result.toString();
     let index = 0;
+
     const interval = setInterval(() => {
       if (index < characters.length) {
-        response.write(`data:${characters[index]}\n\n`);
-        index++;
+        const chunkSize = Math.floor(Math.random() * 10) + 1; // 生成1-10之间的随机数
+        const chunk = characters.slice(index, index + chunkSize);
+        response.write(`data:${chunk}\n\n`);
+        index += chunkSize;
       } else {
         clearInterval(interval);
         response.write('data: DONE');
         response.end();
       }
-    }, 40); 
-    // end-----sse模拟逐次发送数据
+    }, 20); // 缩短发送间隔到20ms
 
     // 监听客户端断开连接
     response.on('close', () => {
