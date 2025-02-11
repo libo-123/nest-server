@@ -36,8 +36,8 @@ export class CardController {
     const result = await this.cardService.getContentAI(content);
 
     response.setHeader('Content-Type', 'text/event-stream');
-    response.setHeader('Connection', 'keep-alive');
-    response.setHeader('Cache-Control', 'no-cache');
+    // response.setHeader('Connection', 'keep-alive');
+    // response.setHeader('Cache-Control', 'no-cache');
 
 
     const characters = result.toString();
@@ -54,7 +54,7 @@ export class CardController {
         response.write('data: DONE');
         response.end();
       }
-    }, 50); // 缩短发送间隔到20ms
+    }, 100); // 缩短发送间隔到20ms
 
     // 监听客户端断开连接
     response.on('close', () => {
