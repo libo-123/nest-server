@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # 应用服务
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3100:3100"
+    environment:
+      - NODE_ENV=production
+      # 在这里添加其他环境变量
+    volumes:
+      - .:/server-page
+      - /server-page/node_modules
+    restart: unless-stopped
+
+  # 如果你使用数据库，可以取消注释下面的配置
+  # database:
+  #   image: postgres:14-alpine
+  #   environment:
+  #     - POSTGRES_USER=your_user
+  #     - POSTGRES_PASSWORD=your_password
+  #     - POSTGRES_DB=your_database
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
+
+# 如果使用数据库，需要定义数据卷
+# volumes:
+#   postgres_data: 
